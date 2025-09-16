@@ -1,18 +1,467 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <title>Livia Chandra — Portfolio (Coming Soon)</title>
-    <meta name="robots" content="noindex,follow">
-    <style>body{font-family:system-ui,Arial,sans-serif;display:grid;place-items:center;min-height:100vh;margin:0}
-    .card{padding:2rem 2.5rem;border:1px solid #ddd;border-radius:16px;box-shadow:0 6px 20px rgba(0,0,0,.06);text-align:center}
+    <title>Livia Chandra — Portfolio</title>
+    <meta name="description" content="Portfolio of Livia Chandra — projects, skills, and contact." />
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='80'%3E🌟%3C/text%3E%3C/svg%3E">    <!-- Tailwind (CDN) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        darkMode: 'class',
+        theme: {
+          extend: {
+            colors: {
+              brand: { DEFAULT: '#6366F1', dark: '#4F46E5' }
+            }
+          }
+        }
+      }
+    </script>
+    <!-- Flowbite CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.5.1/flowbite.min.css" rel="stylesheet" />
+    <style>
+      .card { transition: transform .2s ease, box-shadow .2s ease }
+      .card:hover { transform: translateY(-2px); box-shadow: 0 12px 24px rgba(0,0,0,.08) }
     </style>
   </head>
-  <body>
-    <main class="card">
-      <h1>Portfolio coming soon</h1>
-      <p>In the meantime: <a href="https://github.com/clv07">GitHub</a> · <a href="mailto:chandralivia2002@gmail.com">Email</a></p>
-    </main>
+
+  <body class="bg-white text-gray-800 dark:bg-gray-900 dark:text-gray-100">
+    <!-- Navbar -->
+    <header class="border-b border-gray-100 dark:border-gray-800 bg-white/80 dark:bg-gray-900/80 backdrop-blur supports-[backdrop-filter]:bg-white/60 sticky top-0 z-50">
+      <nav class="mx-auto max-w-6xl px-4 sm:px-6 py-3">
+        <div class="flex items-center justify-between">
+          <a href="#" class="flex items-center gap-2">
+            <span class="font-semibold">Livia Chandra</span>
+          </a>
+
+          <button data-collapse-toggle="navbar-main" type="button" class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm rounded-lg md:hidden hover:bg-gray-100 dark:hover:bg-gray-800" aria-controls="navbar-main" aria-expanded="false">
+            <span class="sr-only">Open main menu</span>
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+          </button>
+
+          <div class="hidden w-full md:block md:w-auto" id="navbar-main">
+            <ul class="flex flex-col p-4 md:p-0 mt-4 font-medium border rounded-lg md:space-x-6 md:flex-row md:mt-0 md:border-0 border-gray-200 dark:border-gray-700 items-center">
+              <li><a href="#about" class="block py-2 px-3 rounded hover:text-brand" data-i18n="nav.about"></a></li>
+              <li><a href="#projects" class="block py-2 px-3 rounded hover:text-brand" data-i18n="nav.projects"></a></li>
+              <li><a href="#skills" class="block py-2 px-3 rounded hover:text-brand" data-i18n="nav.skills"></a></li>
+
+              <!-- Language selector -->
+              <li class="mt-3 md:mt-0">
+                <label for="lang-select" class="sr-only">Language</label>
+                <select id="lang-select" class="rounded-lg border px-3 py-2 text-sm bg-white dark:bg-gray-900 dark:border-gray-700">
+                  <option value="en">English</option>
+                  <option value="zh">简体中文</option>
+                  <option value="ja">日本語</option>
+                </select>
+              </li>
+
+              <!-- Theme switch (left = light, right = dark) -->
+              <li class="mt-3 md:mt-0">
+                <div class="flex items-center gap-2">
+                  <span class="text-xs" aria-hidden="true">☀️</span>
+                  <label class="relative inline-flex items-center cursor-pointer">
+                    <input id="theme-switch" type="checkbox" class="sr-only peer" aria-label="Theme switch: left is light, right is dark" />
+                    <!-- track -->
+                    <div class="w-14 h-8 bg-gray-200 dark:bg-gray-700 rounded-full 
+                                peer-focus:outline-none peer-focus:ring-2 peer-focus:ring-brand 
+                                transition-colors duration-300 ease-in-out"></div>
+                    <!-- knob -->
+                    <div class="absolute left-1 top-1 h-6 w-6 bg-white dark:bg-gray-900 rounded-full shadow
+                                transition-transform duration-300 ease-in-out peer-checked:translate-x-6"></div>
+                  </label>
+                  <span class="text-xs" aria-hidden="true">🌙</span>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <!-- Main Introduction -->
+    <section class="relative">
+      <div class="mx-auto max-w-6xl px-4 sm:px-6 py-16 sm:py-24">
+        <div class="grid gap-10 md:grid-cols-2 md:items-center">
+          <div>
+            <h1 class="text-4xl sm:text-5xl font-extrabold tracking-tight" data-i18n="intro.title">
+              Hi, I’m <span class="text-brand">Livia</span> — I build clean, accessible web experiences.
+            </h1>
+            <p class="mt-4 text-lg text-gray-600 dark:text-gray-300" data-i18n="intro.subtitle">
+              Frontend-focused developer with a knack for simple UI and thoughtful details.
+            </p>
+            <div class="mt-6 flex flex-wrap gap-3">
+
+            <!-- GitHub button -->
+              <a href="https://github.com/clv07" target="_blank" class="inline-flex items-center gap-2 rounded-lg border px-4 py-2.5 hover:bg-gray-50 dark:hover:bg-gray-800" >
+                <svg class="h-5 w-5" 
+                    viewBox="0 0 24 24" 
+                    fill="currentColor">
+                    <path d="M12 .5C5.73.5.9 5.33.9 11.6c0 4.86 3.15 8.98 7.52 10.43.55.1.75-.24.75-.53 0-.26-.01-1.12-.02-2.03-3.06.67-3.71-1.3-3.71-1.3-.5-1.26-1.22-1.6-1.22-1.6-.99-.67.07-.66.07-.66 1.1.08 1.68 1.12 1.68 1.12.98 1.67 2.58 1.19 3.21.9.1-.72.38-1.2.69-1.48-2.44-.28-5-1.22-5-5.43 0-1.2.43-2.18 1.12-2.95-.11-.27-.49-1.37.11-2.85 0 0 .93-.3 3.05 1.13a10.5 10.5 0 0 1 5.56 0c2.12-1.43 3.05-1.13 3.05-1.13.6 1.48.22 2.58.11 2.85.69.77 1.12 1.75 1.12 2.95 0 4.22-2.57 5.15-5.02 5.42.39.34.74 1.02.74 2.06 0 1.49-.01 2.69-.01 3.06 0 .29.2.64.75.53A10.6 10.6 0 0 0 23.1 11.6C23.1 5.33 18.27.5 12 .5z"/></svg>
+                GitHub
+              </a>
+
+              <!-- Email button -->
+              <button 
+                data-modal-target="contact-modal" 
+                data-modal-toggle="contact-modal" 
+                class="inline-flex items-center gap-2 rounded-lg border px-4 py-2.5 hover:bg-gray-50 dark:hover:bg-gray-800">
+                <svg 
+                    class="h-5 w-5" 
+                    fill="none" 
+                    stroke="currentColor" 
+                    viewBox="0 0 24 24">
+                    <path 
+                        stroke-linecap="round" 
+                        stroke-linejoin="round" 
+                        stroke-width="2" 
+                        d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8m-2 8H5a2 2 0 01-2-2V8a2 2 0 012-2h14a2 2 0 012 2v6a2 2 0 01-2 2z"/>
+                </svg>
+                Email
+            </button>
+
+            <!-- LinkedIn button -->
+              <a 
+                href="https://www.linkedin.com/in/liviachandra/"
+                target="_blank"
+                class="inline-flex items-center gap-2 rounded-lg border px-4 py-2.5 hover:bg-gray-50 dark:hover:bg-gray-800">
+                <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M4.98 3.5C4.98 4.6 4.1 5.5 3 5.5S1 4.6 1 3.5 1.9 1.5 3 1.5s1.98.9 1.98 2zM1 8h4v12H1zM8 8h3.7v1.7h.1c.5-.9 1.7-1.8 3.5-1.8 3.7 0 4.4 2.4 4.4 5.5V20h-4v-5.5c0-1.3 0-3-1.8-3s-2.1 1.4-2.1 2.9V20H8z"/>
+                </svg>
+                LinkedIn
+              </a>
+
+            </div>
+          </div>
+          <div class="relative">
+            <div class="aspect-square rounded-2xl bg-gradient-to-br from-brand/10 to-fuchsia-200 dark:from-brand/20 dark:to-fuchsia-400/10 flex items-center justify-center">
+              <span class="text-7xl">✨</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- About -->
+    <section id="about" class="mx-auto max-w-6xl px-4 sm:px-6 py-12 sm:py-16">
+      <h2 class="text-2xl font-bold" data-i18n="about.title">About</h2>
+      <p class="mt-4 text-gray-600 dark:text-gray-300 max-w-3xl" data-i18n="about.text">
+        I’m a developer who enjoys turning ideas into delightful interfaces. I care about performance,
+        accessibility, and small design touches that make software feel friendly.
+      </p>
+    </section>
+
+    <!-- Projects -->
+    <section id="projects" class="mx-auto max-w-6xl px-4 sm:px-6 py-12 sm:py-16">
+      <div class="flex items-end justify-between">
+        <h2 class="text-2xl font-bold" data-i18n="projects.title">Projects</h2>
+        <a href="https://github.com/clv07?tab=repositories" target="_blank" class="text-sm text-brand hover:underline" data-i18n="projects.all">All repos →</a>
+      </div>
+
+    <!-- Project 1-->
+      <div class="mt-6 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        <article class="card rounded-xl border border-gray-200 dark:border-gray-800 p-5">
+          <div class="flex items-center justify-between">
+            <h3 class="font-semibold" data-i18n="proj.one.title">Project One</h3>
+          </div>
+          <p class="mt-2 text-sm text-gray-600 dark:text-gray-300" data-i18n="proj.one.desc">Project one description</p>
+          <div class="mt-3 flex flex-wrap gap-2" data-i18n-list="proj.one.skills"></div>
+          <div class="mt-4 flex gap-3">
+            <a href="#" class="text-sm inline-flex items-center gap-1 text-brand hover:underline" data-i18n="proj.live">Live ↗</a>
+          </div>
+        </article>
+
+        <!-- Project 2-->
+        <article class="card rounded-xl border border-gray-200 dark:border-gray-800 p-5">
+          <h3 class="font-semibold" data-i18n="proj.two.title">Project Two</h3>
+          <p class="mt-2 text-sm text-gray-600 dark:text-gray-300" data-i18n="proj.two.desc">Project two description</p>
+          <div class="mt-3 flex flex-wrap gap-2" data-i18n-list="proj.two.skills"></div> 
+          <div class="mt-4 flex gap-3">
+            <a href="#" class="text-sm inline-flex items-center gap-1 text-brand hover:underline" data-i18n="proj.live">Live ↗</a>
+            <a href="https://github.com/clv07/anime-data-explorer/tree/main" class="text-sm inline-flex items-center gap-1 text-brand hover:underline" data-i18n="proj.code">Code ↗</a>
+          </div>
+        </article>
+        
+        <!-- Project 3-->
+        <article class="card rounded-xl border border-gray-200 dark:border-gray-800 p-5">
+          <h3 class="font-semibold" data-i18n="proj.three.title">Project Three</h3>
+          <p class="mt-2 text-sm text-gray-600 dark:text-gray-300" data-i18n="proj.three.desc">Project three description.</p>
+          <div class="mt-3 flex flex-wrap gap-2" data-i18n-list="proj.three.skills"></div>
+          <div class="mt-4 flex gap-3">
+            <a href="#" class="text-sm inline-flex items-center gap-1 text-brand hover:underline" data-i18n="proj.live">Live ↗</a>
+            <a href="https://github.com/clv07/stroke-of-luck" class="text-sm inline-flex items-center gap-1 text-brand hover:underline" data-i18n="proj.code">Code ↗</a>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- Skills -->
+    <section id="skills" class="mx-auto max-w-6xl px-4 sm:px-6 py-12 sm:py-16">
+      <h2 class="text-2xl font-bold" data-i18n="skills.title">Skills</h2>
+      <div class="mt-4 flex flex-wrap gap-2" data-i18n-list="skills.lists"></div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="border-t border-gray-100 dark:border-gray-800">
+      <div class="mx-auto max-w-6xl px-4 sm:px-6 py-10 flex flex-col sm:flex-row items-center justify-between gap-4">
+        <p class="text-sm text-gray-600 dark:text-gray-300">© <span id="year"></span> Livia Chandra</p>
+      </div>
+    </footer>
+
+    <!-- Contact Modal (Flowbite) -->
+    <div id="contact-modal" tabindex="-1" aria-hidden="true" class="hidden fixed inset-0 z-50 overflow-y-auto overflow-x-hidden">
+      <div class="flex min-h-full items-center justify-center p-4">
+        <div class="relative w-full max-w-md bg-white dark:bg-gray-900 rounded-2xl shadow-xl border border-gray-200 dark:border-gray-800">
+          <div class="flex items-center justify-between p-4 border-b dark:border-gray-800">
+            <h3 class="text-lg font-semibold" data-i18n="modal.title">Send a message</h3>
+            <button type="button" class="rounded-lg p-2 hover:bg-gray-100 dark:hover:bg-gray-800" data-modal-hide="contact-modal" aria-label="Close">
+              <svg class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"/></svg>
+            </button>
+          </div>
+          <form action="mailto:chandralivia2002@gmail.com" method="post" enctype="text/plain" class="p-4 space-y-3">
+            <div>
+              <label class="block text-sm mb-1" for="name" data-i18n="modal.name">Name</label>
+              <input id="name" name="name" type="text" required class="w-full rounded-lg border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-900 focus:border-brand focus:ring-brand"/>
+            </div>
+            <div>
+              <label class="block text-sm mb-1" for="email" data-i18n="modal.email">Email</label>
+              <input id="email" name="email" type="email" required class="w-full rounded-lg border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-900 focus:border-brand focus:ring-brand"  />
+            </div>
+            <div>
+              <label class="block text-sm mb-1" for="message" data-i18n="modal.message">Message</label>
+              <textarea id="message" name="message" rows="4" required class="w-full rounded-lg border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-900 focus:border-brand focus:ring-brand" ></textarea>
+            </div>
+            <div class="flex justify-end gap-2 pt-2">
+              <button type="button" data-modal-hide="contact-modal" class="rounded-lg border px-4 py-2" data-i18n="modal.cancel">Cancel</button>
+              <button type="submit" class="rounded-lg bg-brand px-4 py-2 text-white hover:bg-brand-dark" data-i18n="modal.send">Send</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <!-- Flowbite JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.5.1/flowbite.min.js"></script>
+
+    <!-- Utilities -->
+    <script>
+      // Dynamic year
+      document.getElementById('year').textContent = new Date().getFullYear();
+
+      // THEME: left = light, right = dark
+      const themeSwitch = document.getElementById('theme-switch');
+      function applyTheme(dark) {
+        if (dark) {
+          document.documentElement.classList.add('dark');
+          localStorage.setItem('theme', 'dark');
+        } else {
+          document.documentElement.classList.remove('dark');
+          localStorage.setItem('theme', 'light');
+        }
+      }
+      // init from storage or system
+      (function initTheme() {
+        const stored = localStorage.getItem('theme');
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        const isDark = stored ? stored === 'dark' : prefersDark;
+        applyTheme(isDark);
+        // switch checked means DARK (right); unchecked means LIGHT (left)
+        if (themeSwitch) themeSwitch.checked = isDark;
+      })();
+      themeSwitch?.addEventListener('change', (e) => {
+        const checked = e.target.checked;
+        applyTheme(checked); // checked = dark
+      });
+
+      // I18N: simple dictionary + data attributes
+      const i18n = {
+        en: {
+          'nav.about': 'About Me',
+          'nav.projects': 'Projects',
+          'nav.skills': 'Skills',
+          'nav.contact': 'Contact',
+
+          'intro.title': 'Hi, I’m <span class="text-brand">Livia</span> —  I uncover stories hidden in data by cleaning, analyzing, and visualizing it into insights you can act on.',
+          'intro.subtitle': 'Data analyst with a knack for interesting visualization and thoughtful details.',
+
+
+          'about.title': 'About Me',
+          'about.text': 
+            `I’m a data analyst passionate about transforming messy data into clear, 
+            structured datasets and creating insightful, visually engaging stories. 
+            I value tidy data and strive to design visualizations that make complex information easy to understand.`,
+
+          'projects.title': 'Projects',
+          'projects.all': 'All repos →',
+          'proj.live': 'Live ↗',
+          'proj.code': 'Code ↗',
+
+          'proj.one.title': 'Tone Training App',
+          'proj.one.desc': 
+                `This app was developed to help native English speakers strengthen their auditory plasticity and 
+                learn to distinguish sounds that are unfamiliar in their language. 
+                It featured three modes of training, with options for both perception and production practice. 
+                As part of the project, I worked on analyzing tonal data, performing data cleaning, and preparing 
+                a structured dataset that was later used to train a machine learning model. I've also collaborated with 
+                project members in developing the user interface of the application.`,
+          'proj.one.skills': 'Python, NumPy, Pandas, Seaborn, Librosa, PyQt5, Machine Learning',
+          
+
+          'proj.two.title': 'Anime Data Explorer',
+          'proj.two.desc': 
+                `This app gives insights about the improvement of anime made along years and their popularity over time`,
+          'proj.two.skills' : 'R, Shiny, PCA',
+
+          'proj.three.title': 'GE Healthcare DCAR',
+          'proj.three.desc': 
+                `I explored different visualizations that helped to improve the interpretability of 
+                trained machine learning model.`,
+        'proj.three.skills': 'Python, Seaborn, LightGBM',
+
+          'skills.title': 'Skills',
+          'skills.lists': 'Python, R, Java, C, Git, GitHub, GitLab, Agile',
+
+          'modal.title': 'Send a message',
+          'modal.name': 'Name',
+          'modal.email': 'Email',
+          'modal.message': 'Message',
+          'modal.cancel': 'Cancel',
+          'modal.send': 'Send',
+          'modal.namePh': 'Your name',
+          'modal.emailPh': 'you@example.com',
+          'modal.msgPh': 'Say hello!'
+        },
+        zh: {
+          'nav.about': '关于我',
+          'nav.projects': '项目',
+          'nav.skills': '技能',
+          'nav.contact': '联系',
+
+          'intro.title': '你好，我是 <span class="text-brand">Livia</span> —— 我专注于构建简洁且易用的网页体验。',
+          'intro.subtitle': '以前端为主的开发者，擅长简洁的界面与细腻的细节。',
+
+          'about.title': '关于我',
+          'about.text': '我热衷于把想法变成令人愉悦的界面，关注性能、无障碍以及能让软件更友好的细节。',
+
+          'projects.title': '项目',
+          'projects.all': '所有仓库 →',
+          'proj.featured': '精选',
+          'proj.live': '预览 ↗',
+          'proj.code': '源码 ↗',
+          'proj.one.title': '项目一',
+          'proj.one.desc': '简要说明功能与分工，控制在 1–2 行。',
+          'proj.one.skills': 'Python | PyQt5 | librosa | LightGBM | 机器学习',
+          'proj.two.title': '项目二',
+          'proj.two.desc': '解决了什么问题、使用了哪些技术、产生的影响。',
+          'proj.three.title': '项目三',
+          'proj.three.desc': '简短介绍与个人贡献。',
+
+          'skills.title': '技能',
+          'skills.a11y': '无障碍（a11y）',
+
+          'modal.title': '发送消息',
+          'modal.name': '姓名',
+          'modal.email': '邮箱',
+          'modal.message': '留言',
+          'modal.cancel': '取消',
+          'modal.send': '发送',
+          'modal.namePh': '你的名字',
+          'modal.emailPh': 'you@example.com',
+          'modal.msgPh': '打个招呼吧！'
+        },
+        ja: {
+          'nav.about': '自己紹介',
+          'nav.projects': 'プロジェクト',
+          'nav.skills': 'スキル',
+          'nav.contact': '連絡先',
+
+          'intro.title': 'こんにちは、<span class="text-brand">Livia</span>です — 使いやすくクリーンなWeb体験を作ります。',
+          'intro.subtitle': 'フロントエンド中心で、シンプルなUIと丁寧なディテールが得意です。',
+
+          'about.title': '自己紹介',
+          'about.text': 'アイデアを心地よいインターフェースに変えるのが好きです。性能やアクセシビリティ、ちょっとした気配りを大切にしています。',
+
+          'projects.title': 'プロジェクト',
+          'projects.all': 'すべてのリポジトリ →',
+          'proj.featured': '注目',
+          'proj.live': 'デモ ↗',
+          'proj.code': 'コード ↗',
+          'proj.one.title': 'プロジェクト1',
+          'proj.one.desc': '機能と役割を1〜2行で簡潔に。',
+          'proj.one.skills': 'Python | PyQt5 | librosa | LightGBM | 機械学習',
+          'proj.two.title': 'プロジェクト2',
+          'proj.two.desc': '解決した課題、使用技術、成果など。',
+          'proj.three.title': 'プロジェクト3',
+          'proj.three.desc': '概要とあなたの貢献を短く。',
+
+          'skills.title': 'スキル',
+          'skills.a11y': 'アクセシビリティ（a11y）',
+
+          'modal.title': 'メッセージを送信',
+          'modal.name': '名前',
+          'modal.email': 'メール',
+          'modal.message': 'メッセージ',
+          'modal.cancel': 'キャンセル',
+          'modal.send': '送信',
+          'modal.namePh': 'あなたの名前',
+          'modal.emailPh': 'you@example.com',
+          'modal.msgPh': 'こんにちは！'
+        }
+      };
+
+      function setNodeContent(node, html) {
+        // supports HTML (for the Hero title span)
+        node.innerHTML = html;
+      }
+
+      function translateUI(lang) {
+        const dict = i18n[lang] || i18n.en;
+        // elements with text
+        document.querySelectorAll('[data-i18n]').forEach(el => {
+          const key = el.getAttribute('data-i18n');
+          if (dict[key]) setNodeContent(el, dict[key]);
+        });
+        // placeholders
+        document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
+          const key = el.getAttribute('data-i18n-placeholder');
+          if (dict[key]) el.setAttribute('placeholder', dict[key]);
+        });
+        // lists (chips)
+        document.querySelectorAll('[data-i18n-list]').forEach(el => {
+          const key = el.getAttribute('data-i18n-list');
+          const raw = dict[key];
+          if (!raw) return;
+          const items = raw.split(/[|,]/).map(s => s.trim()).filter(Boolean);
+          el.innerHTML = '';
+          items.forEach(text => {
+            const chip = document.createElement('span');
+            if (key.startsWith('skills')) {
+              chip.className = 'text-sm rounded-lg border px-3 py-1.5'; // Skills style
+            } else {
+              chip.className = 'text-xs rounded-md bg-gray-100 dark:bg-gray-800 px-2 py-1'; // Projects style
+            }
+            chip.textContent = text;
+            el.appendChild(chip);
+          });
+        });
+      }
+
+      // LANG: init + persist
+      const langSelect = document.getElementById('lang-select');
+      (function initLang() {
+        const stored = localStorage.getItem('lang') || 'en';
+        langSelect.value = stored;
+        translateUI(stored);
+        document.documentElement.lang = stored === 'zh' ? 'zh-CN' : (stored === 'ja' ? 'ja' : 'en');
+      })();
+
+      langSelect?.addEventListener('change', (e) => {
+        const lang = e.target.value;
+        localStorage.setItem('lang', lang);
+        translateUI(lang);
+        document.documentElement.lang = lang === 'zh' ? 'zh-CN' : (lang === 'ja' ? 'ja' : 'en');
+      });
+    </script>
   </body>
 </html>
