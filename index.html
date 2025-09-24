@@ -25,11 +25,12 @@
       .card { transition: transform .2s ease, box-shadow .2s ease }
       .card:hover { transform: translateY(-2px); box-shadow: 0 12px 24px rgba(0,0,0,.08) }
     </style>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
   </head>
 
-  <body class="bg-white text-gray-800 dark:bg-gray-900 dark:text-gray-100">
+  <body class="bg-white text-gray-800 dark:bg-gray-900 dark:text-gray-100" style="font-family: 'Inter', sans-serif;">
     <!-- Navbar -->
-    <header class="border-b border-gray-100 dark:border-gray-800 bg-white/80 dark:bg-gray-900/80 backdrop-blur supports-[backdrop-filter]:bg-white/60 sticky top-0 z-50">
+    <header class="border-b border-gray-100 dark:border-gray-800 bg-white dark:bg-gray-900 sticky top-0 z-50">
       <nav class="mx-auto max-w-6xl px-4 sm:px-6 py-3">
         <div class="flex items-center justify-between">
           <a href="#" class="flex items-center gap-2">
@@ -46,16 +47,6 @@
               <li><a href="#about" class="block py-2 px-3 rounded hover:text-brand" data-i18n="nav.about"></a></li>
               <li><a href="#projects" class="block py-2 px-3 rounded hover:text-brand" data-i18n="nav.projects"></a></li>
               <li><a href="#skills" class="block py-2 px-3 rounded hover:text-brand" data-i18n="nav.skills"></a></li>
-
-              <!-- Language selector -->
-              <li class="mt-3 md:mt-0">
-                <label for="lang-select" class="sr-only">Language</label>
-                <select id="lang-select" class="rounded-lg border px-3 py-2 text-sm bg-white dark:bg-gray-900 dark:border-gray-700">
-                  <option value="en">English</option>
-                  <option value="zh">简体中文</option>
-                  <option value="ja">日本語</option>
-                </select>
-              </li>
 
               <!-- Theme switch (left = light, right = dark) -->
               <li class="mt-3 md:mt-0">
@@ -85,11 +76,9 @@
       <div class="mx-auto max-w-6xl px-4 sm:px-6 py-16 sm:py-24">
         <div class="grid gap-10 md:grid-cols-2 md:items-center">
           <div>
-            <h1 class="text-4xl sm:text-5xl font-extrabold tracking-tight" data-i18n="intro.title">
-              Hi, I’m <span class="text-brand">Livia</span> — I build clean, accessible web experiences.
+            <h1 class="text-4xl sm:text-3.5xl font-extrabold tracking-tight" style="font-family: 'Inter', sans-serif; font-weight:700;" data-i18n="intro.title">
             </h1>
             <p class="mt-4 text-lg text-gray-600 dark:text-gray-300" data-i18n="intro.subtitle">
-              Frontend-focused developer with a knack for simple UI and thoughtful details.
             </p>
             <div class="mt-6 flex flex-wrap gap-3">
 
@@ -138,17 +127,15 @@
                         d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8m-2 8H5a2 2 0 01-2-2V8a2 2 0 012-2h14a2 2 0 012 2v6a2 2 0 01-2 2z"/>
                 </svg>
                 Email
-            </button>
-
-           
-
+              </button>
             </div>
           </div>
+
+          <!-- Image -->
           <div class="relative">
-            <div class="aspect-square rounded-2xl bg-gradient-to-br from-brand/10 to-fuchsia-200 dark:from-brand/20 dark:to-fuchsia-400/10 flex items-center justify-center">
-              <span class="text-7xl">✨</span>
-            </div>
+            <img src="assets/profile.heic" alt="Livia Chandra" class="aspect-square rounded-2xl object-cover shadow-lg" />
           </div>
+
         </div>
       </div>
     </section>
@@ -156,10 +143,7 @@
     <!-- About -->
     <section id="about" class="mx-auto max-w-6xl px-4 sm:px-6 py-12 sm:py-16">
       <h2 class="text-2xl font-bold" data-i18n="about.title">About</h2>
-      <p class="mt-4 text-gray-600 dark:text-gray-300 max-w-3xl" data-i18n="about.text">
-        I’m a developer who enjoys turning ideas into delightful interfaces. I care about performance,
-        accessibility, and small design touches that make software feel friendly.
-      </p>
+      <p class="mt-4 text-gray-600 dark:text-gray-300 max-w-3xl" data-i18n="about.text">About Me</p>
     </section>
 
     <!-- Projects -->
@@ -254,224 +238,10 @@
     <!-- Flowbite JS -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.5.1/flowbite.min.js"></script>
 
-    <!-- Utilities -->
-    <script>
-      // Dynamic year
-      document.getElementById('year').textContent = new Date().getFullYear();
+    <!-- Language dictionary -->
+    <script src="js/lang/en.js"></script>
 
-      // THEME: left = light, right = dark
-      const themeSwitch = document.getElementById('theme-switch');
-      function applyTheme(dark) {
-        if (dark) {
-          document.documentElement.classList.add('dark');
-          localStorage.setItem('theme', 'dark');
-        } else {
-          document.documentElement.classList.remove('dark');
-          localStorage.setItem('theme', 'light');
-        }
-      }
-      // init from storage or system
-      (function initTheme() {
-        const stored = localStorage.getItem('theme');
-        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-        const isDark = stored ? stored === 'dark' : prefersDark;
-        applyTheme(isDark);
-        // switch checked means DARK (right); unchecked means LIGHT (left)
-        if (themeSwitch) themeSwitch.checked = isDark;
-      })();
-      themeSwitch?.addEventListener('change', (e) => {
-        const checked = e.target.checked;
-        applyTheme(checked); // checked = dark
-      });
-
-      // I18N: simple dictionary + data attributes
-      const i18n = {
-        en: {
-          'nav.about': 'About Me',
-          'nav.projects': 'Projects',
-          'nav.skills': 'Skills',
-          'nav.contact': 'Contact',
-
-          'intro.title': 'Hi, I’m <span class="text-brand">Livia</span> —  I uncover stories hidden in data by cleaning, analyzing, and visualizing it into insights you can act on.',
-          'intro.subtitle': 'Data analyst with a knack for interesting visualization and thoughtful details.',
-
-
-          'about.title': 'About Me',
-          'about.text': 
-            `I’m a data analyst passionate about transforming messy data into clear, 
-            structured datasets and creating insightful, visually engaging stories. 
-            I value tidy data and strive to design visualizations that make complex information easy to understand.`,
-
-          'projects.title': 'Projects',
-          'projects.all': 'All repos →',
-          'proj.live': 'Live ↗',
-          'proj.code': 'Code ↗',
-
-          'proj.one.title': 'Tone Training App',
-          'proj.one.desc': 
-                `This app was developed to help native English speakers strengthen their auditory plasticity and 
-                learn to distinguish sounds that are unfamiliar in their language. 
-                It featured three modes of training, with options for both perception and production practice. 
-                As part of the project, I worked on analyzing tonal data, performing data cleaning, and preparing 
-                a structured dataset that was later used to train a machine learning model. I've also collaborated with 
-                project members in developing the user interface of the application.`,
-          'proj.one.skills': 'Python, NumPy, Pandas, Seaborn, Librosa, PyQt5, Machine Learning',
-          
-
-          'proj.two.title': 'Anime Data Explorer',
-          'proj.two.desc': 
-                `This app gives insights about the improvement of anime made along years and their popularity over time`,
-          'proj.two.skills' : 'R, Shiny, PCA',
-
-          'proj.three.title': 'GE Healthcare DCAR',
-          'proj.three.desc': 
-                `I explored different visualizations that helped to improve the interpretability of 
-                trained machine learning model.`,
-        'proj.three.skills': 'Python, Seaborn, LightGBM',
-
-          'skills.title': 'Skills',
-          'skills.lists': 'Python, R, Java, C, Git, GitHub, GitLab, Agile',
-
-          'modal.title': 'Send a message',
-          'modal.name': 'Name',
-          'modal.email': 'Email',
-          'modal.message': 'Message',
-          'modal.cancel': 'Cancel',
-          'modal.send': 'Send',
-          'modal.namePh': 'Your name',
-          'modal.emailPh': 'you@example.com',
-          'modal.msgPh': 'Say hello!'
-        },
-        zh: {
-          'nav.about': '关于我',
-          'nav.projects': '项目',
-          'nav.skills': '技能',
-          'nav.contact': '联系',
-
-          'intro.title': '你好，我是 <span class="text-brand">Livia</span> —— 我专注于构建简洁且易用的网页体验。',
-          'intro.subtitle': '以前端为主的开发者，擅长简洁的界面与细腻的细节。',
-
-          'about.title': '关于我',
-          'about.text': '我热衷于把想法变成令人愉悦的界面，关注性能、无障碍以及能让软件更友好的细节。',
-
-          'projects.title': '项目',
-          'projects.all': '所有仓库 →',
-          'proj.featured': '精选',
-          'proj.live': '预览 ↗',
-          'proj.code': '源码 ↗',
-          'proj.one.title': '项目一',
-          'proj.one.desc': '简要说明功能与分工，控制在 1–2 行。',
-          'proj.one.skills': 'Python | PyQt5 | librosa | LightGBM | 机器学习',
-          'proj.two.title': '项目二',
-          'proj.two.desc': '解决了什么问题、使用了哪些技术、产生的影响。',
-          'proj.three.title': '项目三',
-          'proj.three.desc': '简短介绍与个人贡献。',
-
-          'skills.title': '技能',
-          'skills.a11y': '无障碍（a11y）',
-
-          'modal.title': '发送消息',
-          'modal.name': '姓名',
-          'modal.email': '邮箱',
-          'modal.message': '留言',
-          'modal.cancel': '取消',
-          'modal.send': '发送',
-          'modal.namePh': '你的名字',
-          'modal.emailPh': 'you@example.com',
-          'modal.msgPh': '打个招呼吧！'
-        },
-        ja: {
-          'nav.about': '自己紹介',
-          'nav.projects': 'プロジェクト',
-          'nav.skills': 'スキル',
-          'nav.contact': '連絡先',
-
-          'intro.title': 'こんにちは、<span class="text-brand">Livia</span>です — 使いやすくクリーンなWeb体験を作ります。',
-          'intro.subtitle': 'フロントエンド中心で、シンプルなUIと丁寧なディテールが得意です。',
-
-          'about.title': '自己紹介',
-          'about.text': 'アイデアを心地よいインターフェースに変えるのが好きです。性能やアクセシビリティ、ちょっとした気配りを大切にしています。',
-
-          'projects.title': 'プロジェクト',
-          'projects.all': 'すべてのリポジトリ →',
-          'proj.featured': '注目',
-          'proj.live': 'デモ ↗',
-          'proj.code': 'コード ↗',
-          'proj.one.title': 'プロジェクト1',
-          'proj.one.desc': '機能と役割を1〜2行で簡潔に。',
-          'proj.one.skills': 'Python | PyQt5 | librosa | LightGBM | 機械学習',
-          'proj.two.title': 'プロジェクト2',
-          'proj.two.desc': '解決した課題、使用技術、成果など。',
-          'proj.three.title': 'プロジェクト3',
-          'proj.three.desc': '概要とあなたの貢献を短く。',
-
-          'skills.title': 'スキル',
-          'skills.a11y': 'アクセシビリティ（a11y）',
-
-          'modal.title': 'メッセージを送信',
-          'modal.name': '名前',
-          'modal.email': 'メール',
-          'modal.message': 'メッセージ',
-          'modal.cancel': 'キャンセル',
-          'modal.send': '送信',
-          'modal.namePh': 'あなたの名前',
-          'modal.emailPh': 'you@example.com',
-          'modal.msgPh': 'こんにちは！'
-        }
-      };
-
-      function setNodeContent(node, html) {
-        // supports HTML (for the Hero title span)
-        node.innerHTML = html;
-      }
-
-      function translateUI(lang) {
-        const dict = i18n[lang] || i18n.en;
-        // elements with text
-        document.querySelectorAll('[data-i18n]').forEach(el => {
-          const key = el.getAttribute('data-i18n');
-          if (dict[key]) setNodeContent(el, dict[key]);
-        });
-        // placeholders
-        document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
-          const key = el.getAttribute('data-i18n-placeholder');
-          if (dict[key]) el.setAttribute('placeholder', dict[key]);
-        });
-        // lists (chips)
-        document.querySelectorAll('[data-i18n-list]').forEach(el => {
-          const key = el.getAttribute('data-i18n-list');
-          const raw = dict[key];
-          if (!raw) return;
-          const items = raw.split(/[|,]/).map(s => s.trim()).filter(Boolean);
-          el.innerHTML = '';
-          items.forEach(text => {
-            const chip = document.createElement('span');
-            if (key.startsWith('skills')) {
-              chip.className = 'text-sm rounded-lg border px-3 py-1.5'; // Skills style
-            } else {
-              chip.className = 'text-xs rounded-md bg-gray-100 dark:bg-gray-800 px-2 py-1'; // Projects style
-            }
-            chip.textContent = text;
-            el.appendChild(chip);
-          });
-        });
-      }
-
-      // LANG: init + persist
-      const langSelect = document.getElementById('lang-select');
-      (function initLang() {
-        const stored = localStorage.getItem('lang') || 'en';
-        langSelect.value = stored;
-        translateUI(stored);
-        document.documentElement.lang = stored === 'zh' ? 'zh-CN' : (stored === 'ja' ? 'ja' : 'en');
-      })();
-
-      langSelect?.addEventListener('change', (e) => {
-        const lang = e.target.value;
-        localStorage.setItem('lang', lang);
-        translateUI(lang);
-        document.documentElement.lang = lang === 'zh' ? 'zh-CN' : (lang === 'ja' ? 'ja' : 'en');
-      });
-    </script>
+    <!-- Your main logic -->
+    <script src="js/main.js"></script>
   </body>
 </html>
