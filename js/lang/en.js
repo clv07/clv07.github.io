@@ -28,28 +28,6 @@ en: {
     'proj.live': 'Live ↗',
     'proj.code': 'Code ↗',
 
-    'proj.one.title': 'Tone Training App',
-    'proj.one.desc': 
-        `This app was developed to help native English speakers strengthen their auditory plasticity and 
-        learn to distinguish sounds that are unfamiliar in their language. 
-        It featured three modes of training, with options for both perception and production practice. 
-        As part of the project, I worked on analyzing tonal data, performing data cleaning, and preparing 
-        a structured dataset that was later used to train a machine learning model. I've also collaborated with 
-        project members in developing the user interface of the application.`,
-    'proj.one.skills': 'Python, NumPy, Pandas, Seaborn, Librosa, PyQt5, Machine Learning',
-    
-
-    'proj.two.title': 'Anime Data Explorer',
-    'proj.two.desc': 
-        `This app gives insights about the improvement of anime made along years and their popularity over time`,
-    'proj.two.skills' : 'R, Shiny, PCA',
-
-    'proj.three.title': 'GE Healthcare DCAR',
-    'proj.three.desc': 
-        `I explored different visualizations that helped to improve the interpretability of 
-        trained machine learning model.`,
-'proj.three.skills': 'Python, Seaborn, LightGBM',
-
     'skills.title': 'Skills',
     'skills.lists': 'Python, R, Java, C, Git, GitHub, GitLab, Agile',
 
