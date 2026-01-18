@@ -6,8 +6,13 @@ en: {
     'nav.skills': 'Skills',
     'nav.contact': 'Contact',
 
-    'intro.title': 'Hi, I’m <span class="text-brand">Livia</span> —  I uncover stories hidden in data by cleaning, analyzing, and visualizing it into insights you can act on.',
-    'intro.subtitle': 'Data analyst with a knack for interesting visualization and thoughtful details.',
+        'intro.title': ' \
+            <span class= "text-xl"> Hi, my name is</span> \
+            <span class="block mt-4 text-brand text-3xl md:text-4xl lg:text-5xl">Livia Chandra</span> \
+            <span class= "block mt-4 text-3xl md:text-4xl text-gray-600" > \
+             I build efficient computing systems across hardware and software.</span> \
+                ',
+    'intro.subtitle': 'I\'m a computer engineer focused on parallel computing, CPU/GPU programming, and performance optimization.',
 
 
     'about.title': 'About Me',

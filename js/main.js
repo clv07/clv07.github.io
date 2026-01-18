@@ -73,6 +73,19 @@ document.documentElement.lang = 'en';
 // Project data
 const projects = [
   {
+    title: "AI Accelerator",
+    desc: 'Design efficient AI accelerator hardware.',
+    skills: ['Verilog', 'Python', 'PyTorch']
+  },
+  {
+    title: "Filter Banks In Amplifier",
+    skills: ["Python"]
+  },
+  {
+    title: "Recipe Recommendation System",
+    skills: ["Python"]
+  },
+  {
     title: "Tone Training App (UW-Madison SPAN Lab)",
     desc:
         `A Mandarin tone-training application designed to help native English speakers practice both perception and production of unfamiliar sounds. 
@@ -101,13 +114,6 @@ const projects = [
     live: "https://youtu.be/eCcQL7RZvGs",
     code: "https://github.com/clv07/vrent"
   },
-//   {
-//     title: "Movie Recommendation System",
-//     desc: "Recommendation engine combining collaborative filtering and content-based methods for personalized movie suggestions.",
-//     skills: ["Python", "SQL", "Recommendation Systems"],
-//     live: "",
-//     code: ""
-//   },
   {
     title: "Car Resale Price Prediction",
     desc: "Regression model predicting used car prices based on dataset features such as mileage, brand, and year.",
