@@ -45,7 +45,12 @@ function buildFilterBar() {
   const bar = document.getElementById('project-filter-bar');
   if (!bar) return;
 
-  const allTags = ['All', ...new Set(projects.flatMap(p => p.tags || []))];
+  // Filter tab order. Tags not listed here are added at the end automatically.
+  const TAG_ORDER = ['Backend', 'Systems', 'HPC', 'AI/ML', 'Data Science', 'XR/VR', 'Signal Processing',];
+  const used = new Set(projects.flatMap(p => p.tags || []));
+  const allTags = ['All',
+    ...TAG_ORDER.filter(t => used.has(t)),
+    ...[...used].filter(t => !TAG_ORDER.includes(t))];
 
   bar.innerHTML = '';
   allTags.forEach(tag => {
@@ -120,4 +125,14 @@ function renderProjects() {
 document.addEventListener('DOMContentLoaded', () => {
   buildFilterBar();
   renderProjects();
+});
+
+// ===============================
+// Resume modal: load the PDF only when opened
+// ===============================
+document.querySelectorAll('[data-modal-target="resume-modal"]').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const frame = document.getElementById('resume-frame');
+    if (frame && !frame.src) frame.src = frame.dataset.src;
+  });
 });
